@@ -1,0 +1,120 @@
+{
+  "version": "oarsi-patchattn-1p6-v3-seed29",
+  "frozen_plan": "FROZEN_PLAN.md",
+  "frozen_plan_sha256": "b72ae9182d984b086f23da4474ea89ae873cd93696455c9ccd959a0bf01e0717",
+  "project": "/path/to/drai",
+  "base_source": "outputs/downstream/oa_kl_vitl_l5_reviewed_v3_training_v1/seed17/source_v1",
+  "output": "outputs/downstream/oarsi_patchattn_1p6/attempt03_seed29",
+  "training_authorized": false,
+  "test_access_permitted": false,
+  "seed": 29,
+  "epochs": 20,
+  "steps_per_epoch": 504,
+  "total_steps": 10080,
+  "train_manifest": "data/manifests/chen_yolo_usable448_1p6x_clean_v1_20261112/train_usable.jsonl",
+  "train_sha256": "811046a7592e0da45ede08f45e297ea93949fa736ac395684c72e0683b292e16",
+  "val_manifest": "data/manifests/chen_yolo_usable448_1p6x_clean_v1_20261112/val_usable.jsonl",
+  "val_sha256": "4327b06965bb4041de161f19aa8974b452061549364009431b1dd3c123c53258",
+  "train_oarsi": "data/manifests/chen_yolo_1p6x_oarsi_aux_v1_20261113/train_oarsi.jsonl",
+  "train_oarsi_sha256": "61898e235821c83fa96d5966154a0cd0bd0f524b29b4be883939895723c7c785",
+  "val_oarsi": "data/manifests/chen_yolo_1p6x_oarsi_aux_v1_20261113/val_oarsi.jsonl",
+  "val_oarsi_sha256": "9ecf7b3e00bdb0b29cb9805d898553c018b2a77f83dd681b5219c0976280c939",
+  "detector_expansion": 1.6,
+  "counts": {
+    "train": {
+      "knees": 32256,
+      "patients": 3537
+    },
+    "val": {
+      "knees": 3962,
+      "patients": 435
+    }
+  },
+  "train_class_counts": [
+    12837,
+    6173,
+    7931,
+    4176,
+    1139
+  ],
+  "val_class_counts": [
+    1772,
+    681,
+    865,
+    494,
+    150
+  ],
+  "groups": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "run_order": [
+    "P0",
+    "P3"
+  ],
+  "new_module_lr": 0.001,
+  "pool_heads": 8,
+  "lambda_target": 0.25,
+  "lambda_ramp": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "lambda_lock": "lambda_lock.json",
+  "lambda_calibration_groups": {
+    "P2": "P2",
+    "P3": "P3",
+    "P4": "P3"
+  },
+  "calibration_images": 1024,
+  "calibration_min_valid_batches": 24,
+  "lambda_acceptance": "fixed_from_seed17_v2_lock_no_recalibration",
+  "orientation": "clinical_side_L_flipped_along_width_before_augmentation_train_and_val",
+  "random_flip": "A_recipe_probability_0.5_drawn_before_photometric; P0-P3 swap OARSI medial/lateral on flip; P4 no swap",
+  "class_weight_policy": "retain_original_v3_vector",
+  "oarsi_class_weights": null,
+  "gates": {
+    "qwk_improvement_min_selected_epoch": 0.003,
+    "qwk_improvement_min_plateau_mean_e11_e20": 0.003,
+    "auc_kl_ge2_decline_max": 0.005,
+    "cross_two_error_increase_max": 0.01,
+    "primary_comparison": "P3_minus_P0",
+    "P4_in_gates": false
+  },
+  "selection": "maximum_raw_QWK_then_earliest_epoch",
+  "attention_panel": {
+    "split": "val",
+    "images": 32,
+    "seed": 170330
+  },
+  "ece_bins": 15,
+  "backup_policy": "verified_second_copy_on_same_data_disk_not_independent_disaster_recovery",
+  "exploratory": true,
+  "single_seed_note": "seed extension authorized by user 2026-11-15 (\"add two seeds\") after seeing seed17 result; P0 and P3 only",
+  "frozen_plan_amendment": "FROZEN_PLAN_AMENDMENT_v2.md",
+  "lambda_calibration_location": "shared_trainable_encoder_parameters_last6_blocks_plus_final_norm_fp32_recompute",
+  "calibration_microbatch": 8,
+  "p0_reference": {
+    "source": "outputs/downstream/oarsi_patchattn_1p6/source_v1",
+    "run": "outputs/downstream/oarsi_patchattn_1p6/attempt01/train_P0",
+    "note": "P0 has no OARSI loss (lambda=0); v1 and v2 training paths identical; only calibration code differs"
+  },
+  "frozen_plan_amendment_v3": "FROZEN_PLAN_AMENDMENT_v3_seeds.md",
+  "lambda_fixed": {
+    "path": "outputs/downstream/oarsi_patchattn_1p6/attempt02_lambda_v2/lambda_lock.json",
+    "sha256": "d584ba13ef726d1d3375248706f7c47fcbed207f2e911aa0923c48e9cdf8d5c0",
+    "lambda": {
+      "P2": 0.16741287014234046,
+      "P3": 0.2949566469066166
+    },
+    "note": "hyperparameter fixed from seed17 source_v2 calibration; not recalibrated per seed"
+  },
+  "seed17_reference": {
+    "P0": "attempt01/train_P0 (source_v1)",
+    "P3": "attempt02_lambda_v2/train_P3 (source_v2)"
+  }
+}

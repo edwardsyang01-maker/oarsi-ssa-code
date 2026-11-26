@@ -1,0 +1,178 @@
+{
+  "schema": "drai-L5-reviewed-v3-laterality-training-v1",
+  "run_name": "L5_reviewed_v3_dinov3_vitl16_last6_448_seed17_20261109_v1",
+  "run_directory": "outputs/downstream/oa_kl_vitl_l5_reviewed_v3_training_v1/seed17/runs/L5_reviewed_v3_dinov3_vitl16_last6_448_seed17_20261109_v1",
+  "preflight_directory": "outputs/downstream/oa_kl_vitl_l5_reviewed_v3_training_v1/seed17/preflight/L5_reviewed_v3_dinov3_vitl16_last6_448_seed17_20261109_v1",
+  "backup_directory": "/path/to/drai/outputs/downstream/oa_kl_vitl_l5_reviewed_v3_training_v1/seed17/recovery/L5_reviewed_v3_dinov3_vitl16_last6_448_seed17_20261109_v1",
+  "weights_directory": "checkpoints/external/dinov3_vitl16_lvd1689m",
+  "weights_sha256": {
+    "model.safetensors": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179",
+    "config.json": "135ecd23e34a70b6fbed8b083fdecb319b7e3a54e3d849258bbe4ddcf1783bb5",
+    "preprocessor_config.json": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7"
+  },
+  "expected_versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.6",
+    "deepspeed": "0.19.8"
+  },
+  "expected_total_parameters": 303134725,
+  "expected_trainable_parameters": 75590661,
+  "seed": 17,
+  "epochs": 20,
+  "steps_per_epoch": 349,
+  "total_steps": 6980,
+  "warmup_epochs": 1,
+  "min_lr_ratio": 0.01,
+  "image_size": 448,
+  "mode": "last6+final_norm+head",
+  "encoder_lr": 1e-05,
+  "head_lr": 0.001,
+  "weight_decay": 0.05,
+  "loss": "weighted_cross_entropy_plus_normalized_RPS",
+  "augment": true,
+  "direction_normalization": false,
+  "microbatch_per_rank": 32,
+  "world_size": 2,
+  "effective_batch_size": 64,
+  "gradient_accumulation_steps": 1,
+  "precision": "native_BF16_model_shards_FP32_master_and_Adam_shards",
+  "gradient_checkpointing": "last6_non_reentrant",
+  "attention": "sdpa_auto_with_deterministic_algorithms",
+  "cpu_threads_per_rank": 2,
+  "dataset_workers": 0,
+  "checkpoint_every_steps": 400,
+  "startup_checkpoint_step": 10,
+  "checkpoint_every_epoch": true,
+  "keep_last": 3,
+  "preserve_best_checkpoint": true,
+  "amp_max_attempts": 1,
+  "manifest": {
+    "path": "outputs/downstream/oa_kl_unified_v1/cohort_matrix_20261026_r1/roi_all_laterality_reviewed_v3_20261109.jsonl",
+    "sha256": "360014bd6283eff054c009e314207c106454a88e5cc708e4427c2400b105b05d"
+  },
+  "cache_root": "data/processed/oa_kl_unified_v1/native_all_20261025_r3",
+  "counts": {
+    "train": {
+      "knees": 22277,
+      "films": 11279,
+      "patients": 2541
+    },
+    "val": {
+      "knees": 2901,
+      "films": 1470,
+      "patients": 318
+    }
+  },
+  "selection": "maximum_validation_QWK_then_lower_MAE_then_earlier_epoch",
+  "gpu_uuids": [
+    "GPU-214fb1e9-6b50-4251-e989-073b71ceb7b5",
+    "GPU-dc85ba0e-cc3b-9b95-bfb9-063c8df0c2ae"
+  ],
+  "storage_budget_gib_each_location": 18,
+  "test_targets_accessed": false,
+  "clinical_validation": false,
+  "automatic_failure_retry": false,
+  "scope": "One new L5 seed17 training run on reviewed candidate v3, retaining 46 evidence-supported laterality revisions and excluding nine unresolved or poor-crop rows, from original DINOv3 pretrained weights.",
+  "comparison_note": "Candidate v3 derived from frozen v2 after explicit marker review. Same recipe and original class-weight vector; independent clinical laterality confirmation remains incomplete. Old and new models compared on the same v3 validation rows and labels. No test evaluation.",
+  "early_verification_checkpoint_steps": [
+    120
+  ],
+  "preflight_revision_note": "Fresh-process exact ZeRO resume using synthetic 197 samples; final global tail five, ranks three/two, matches reviewed v3 cohort.",
+  "experiment": "L5",
+  "hidden_size": 1024,
+  "head_outputs": 5,
+  "head_type": "softmax5",
+  "trainable_blocks": 6,
+  "class_weights": [
+    0.7252987705026848,
+    1.2477855537450864,
+    1.0429145495233847,
+    1.520314596291439,
+    2.1758963115080543
+  ],
+  "weight_scheme": "capped_sqrt",
+  "ordinal_lambda": 0.5,
+  "layer_lr_decay": 0.75,
+  "train_class_counts": [
+    10647,
+    3594,
+    5152,
+    2414,
+    470
+  ],
+  "val_class_counts": [
+    1483,
+    412,
+    633,
+    306,
+    67
+  ],
+  "augmentation_parameters": {
+    "brightness": [
+      0.9,
+      1.1
+    ],
+    "contrast": [
+      0.9,
+      1.1
+    ],
+    "gamma": [
+      0.9,
+      1.1
+    ],
+    "horizontal_flip_probability": 0.5,
+    "rotation_degrees": [
+      -5,
+      5
+    ],
+    "translation_fraction": [
+      -0.03,
+      0.03
+    ],
+    "gaussian_blur_probability": 0.15,
+    "gaussian_blur_sigma": [
+      0.1,
+      0.7
+    ],
+    "gaussian_blur_kernel": 3,
+    "padding": "border",
+    "interpolation": "bilinear",
+    "align_corners": false
+  },
+  "focal_gamma": null,
+  "focal_mix": null,
+  "corn_mix": null,
+  "decode": "argmax_of_five_class_probabilities_no_threshold_tuning",
+  "corn_global_denominator": "sum_of_conditional_eligible_tasks_unweighted_count",
+  "minimum_free_data_gib": 48,
+  "gpu_reserved_limit_bytes": 7516192768,
+  "cpu_affinity_logical_ids": [
+    8,
+    9,
+    18,
+    19
+  ],
+  "cpu_interop_threads": 1,
+  "blas_threads": 1,
+  "cpu_nice": 10,
+  "minimum_free_backup_gib": 48,
+  "aggregate_storage_budget_gib": 48,
+  "backup_storage_kind": "same_data_disk_copy",
+  "independent_failure_domain": false,
+  "augmentation_label_note": "Horizontal mirroring changes image coordinates only; KL grade, patient identity and recorded anatomical laterality remain unchanged. No side prediction or direction relabeling.",
+  "backup_schema_note": "Legacy nas_* fields indicate a verified second copy on the same data directory, not NAS or independent disaster recovery.",
+  "authorization_text": "On 2026-11-09 the user replied OK to the overall plan: first resolve the remaining side and crop issues, freeze the new lists, re-evaluate old predictions with the same labels, then retrain 20 epochs for seeds 17 -> 23 -> 29. The agent chose the implementation from the existing review: of 47 stronger side evidences, 46 revisions were kept, and 8 weak/unknown cases plus the S09 crop anomaly were excluded; these 46 revisions and 9 exclusions are an agent implementation decision, not specified case by case by the user. Labels were not chosen by performance, and no independent clinical confirmation is claimed.",
+  "allowed_desktop_process": {
+    "pid": 2607,
+    "start_ticks": 3755,
+    "exe": "/usr/libexec/gnome-remote-desktop-daemon"
+  },
+  "class_weight_reference_counts": [
+    10646,
+    3597,
+    5149,
+    2423,
+    469
+  ],
+  "class_weight_policy": "fixed_original_L5_seed17_vector_and_reference_counts_despite_reviewed_v3_label_and_exclusion_changes"
+}

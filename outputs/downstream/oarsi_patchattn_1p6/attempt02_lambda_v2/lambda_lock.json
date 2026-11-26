@@ -1,0 +1,26 @@
+{
+  "lambda": {
+    "P2": 0.16741287014234046,
+    "P3": 0.2949566469066166
+  },
+  "calibration_sha256": {
+    "P2": {
+      "0": "cdee54ce8d4dacd780077a73edfa7e899aeb41a03f8f5557cdcbb6bcb505f2db",
+      "1": "5f382d1d5d11153ba421348ab601a68b1e1b9fe0cf30a8ca6182548af3b79533"
+    },
+    "P3": {
+      "0": "ff4691139d1dc639cdc0147685c3967895c01d0d44d8e93905b860cf4a488695",
+      "1": "e578aca26d51004df6c2f05f517941506c3f1b0a20e53788a4362791245759d5"
+    }
+  },
+  "lambda_target": 0.25,
+  "seed": 17,
+  "spec_sha256": "7ce26afa62cf4f0a04767c238d36ede502f48088a0600242a5ea4a277dd0bbcf",
+  "train_sha256": "811046a7592e0da45ede08f45e297ea93949fa736ac395684c72e0683b292e16",
+  "training_updates_before_lock": 0,
+  "shared": {
+    "P4": "P3"
+  },
+  "method": "train_only_forward_measured_on_shared_params_then_hash_locked_v2",
+  "locked_at": "2026-11-14T03:23:56.860906+00:00"
+}
